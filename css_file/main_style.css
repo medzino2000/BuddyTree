@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  position: relative;
+}
 header {
   width: 100%;
   height: 96vh;
@@ -60,11 +63,66 @@ header {
 }
 
 /*start of hero section*/
+.play {
+  right: clamp(calc(-4px +24.63vw), calc(-4px + 24.63vw), calc(349.5px + 10.63vw));
+  top: clamp(calc(7.173vw + 31.52vh), calc(9.173vw + 31.52vh), calc(224px + 31.52vh));
+  transform: translate(50% , -50%);
+  position: absolute;
+  width: 50px;
+  height: 50px;
+}
+.close {
+  width: 50px;
+  display: none;
+  position: absolute;
+  top: 16vh;
+  right: -85vw;
+  transform: translateY(-50%);
+  z-index: 9999999;
+}
 .hero_section {
   display: flex;
   margin-top: 14vh;
   height: 46vh;
   justify-content: space-between;
+}
+.video_parent video {
+  position: sticky;
+  transform: translate(-50%, -50%);
+  margin-left: 50vw;
+  width: 80vw;
+  z-index: 9999;
+  display: none;
+  top: 0;
+  
+}
+.show {
+  position:sticky !important;
+  transition-duration: 1s;
+  transform:translate(-50%, -50%) !important;
+  margin-left:50vw !important;
+  width:58vw !important;
+  z-index:9999 !important;
+  animation-name: showing;
+  animation-duration: 1s;
+}
+@keyframes showing {
+  0%{
+    top: 0;
+  }
+  100% {
+    top: 50%;
+  }
+}
+.video_parent {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 1px;
+  bottom: 0;
+  padding-top: 45px;
+  overflow: visible;
+
 }
 .header_of_sct {
   width: fit-content;
@@ -82,11 +140,13 @@ header {
   flex-direction: column;
   justify-content: space-between;
 }
+
 /*end of -start of hero section*/
 /**/
 /**/
 /*start of how it is work section*/
 .how_it_is_work_sct {
+  background-color: #ffffff;
   min-height: 132.2vh;
   width: 100%;
   padding-inline: 10.631578947368%;
@@ -500,13 +560,16 @@ article a {
 .content_event_container_right {
   width: 53.5vw;
   display: flex;
-  overflow-x: scroll;
-  align-items: flex-end;
+  overflow-x: hidden;
+  align-items: center;
+  position: relative;
+  height: 128%;
 }
 .content_event_container_right::-webkit-scrollbar {
   height: 0px;
 }
 .event_article {
+  transition-duration: 0.8s;
   min-width: 45vw;
   background-color: #036994;
   padding: 3.5vw 0 0 6.5%;
@@ -514,8 +577,7 @@ article a {
   border-radius: 6px;
   margin-right: 2vw;
   position: relative;
-  margin-top: 4.25vw;
-  height: calc(100% - 4.25vw);
+  height: 55vh;
 }
 .q_container {
   height: 23.865vh;
@@ -658,7 +720,22 @@ footer {
   margin-top: 5vh;
 }
 /*end of -the footer*/
+#b_right {
+  position: absolute;
+  z-index: 1;
+  left: calc(45vw - 29px);
+  bottom: 9px;
+}
+#b_left {
+  position: absolute;
+  z-index: 1;
+  left: calc(45vw - 95px);
+  bottom: 9px;
+}
 
+/*left right event*/
+
+/**/
 @media (max-width: 1000px) {
   .phone_right {
     display: none;
@@ -716,6 +793,15 @@ footer {
     
       margin: 8vh auto 8vh auto;
       margin-left: calc(50% - 24.73vw);
+    }
+    .play {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      top: calc(23.5vw + 31.52vh);
+      background-color: red;
+      transform: translateY(-50%);
+      right: auto;
     }
     /**/
     /**/
@@ -803,6 +889,7 @@ footer {
       border: 1px solid #ffffff;
       color: #5bdea2;
       border-radius: 6px;
+      min-width: 0;
     }
   }
   @media (max-width: 720px) {
@@ -861,7 +948,14 @@ footer {
       height: auto;
       margin-top: 8vh;
       margin-inline: auto;
-
+    }
+    #b_left {
+      left: calc(75vw - 50px);
+      width: 22px;
+    }
+    #b_right {
+      left: calc(75vw - 16px);
+      width: 22px;
     }
     .mini_buttonn {
       height: 22px;
@@ -909,7 +1003,7 @@ footer {
       left: calc(50% - 127.5px);
     }
     #last_header {
-      margin-top: 98px;
+      margin-top: 78px;
     }
     .footer_content_container {
       justify-content: flex-start;
@@ -936,6 +1030,11 @@ footer {
     letter-spacing: 1.4px;
     margin: 4px 5px;
     padding: 12px 25px;
+    min-width: 170px;
+    
+    }
+    .categories * {
+      min-width: 0;
     }
     .mini_buttonn_container {
       margin-bottom: 23px;
@@ -951,6 +1050,9 @@ footer {
       margin-block: 77px;
       margin-inline: 0;
     }
+    .mini_buttonn_container .buttonn {
+      min-width: 0;
+    }
   }
 }
 @media (max-width: 414px) {
@@ -959,4 +1061,18 @@ footer {
       margin-block: 77px;
       margin-inline: 0;
     }
-}
+    .mini_buttonn_container .buttonn {
+      height: 19px;
+      font-weight: 700;
+      font-size: 11px;
+      line-height: 19px;
+      text-align: center;
+      letter-spacing: 0.4px;
+      margin: 4px 4px;
+      padding: 0px 7px;
+      
+    min-width: 0;
+
+  }
+    }
+
